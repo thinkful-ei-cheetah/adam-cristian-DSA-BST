@@ -1,3 +1,4 @@
+'use strict';
 class BinarySearchTree {
   constructor(key=null, value=null, parent=null) {
     this.key = key;
@@ -17,7 +18,7 @@ class BinarySearchTree {
       if (this.left == null) {
         this.left = new BinarySearchTree(key, value, this);
       } else {
-        this.left.insert(key, value)
+        this.left.insert(key, value);
       }
     }
 
@@ -36,7 +37,7 @@ class BinarySearchTree {
     }
 
     else if (key < this.key && this.left) {
-      return this.left.find(key)
+      return this.left.find(key);
     }
 
     else if (key > this.key && this.right) {
@@ -44,7 +45,7 @@ class BinarySearchTree {
     }
 
     else {
-      throw new Error ('not found')
+      throw new Error ('not found');
     }
   }
 
@@ -54,7 +55,7 @@ class BinarySearchTree {
         const successor = this.right._findMin();
         this.key = successor.key;
         this.value = successor.value;
-        successor.remove(successor.key)
+        successor.remove(successor.key);
       }
 
       else if (this.left) {
@@ -66,7 +67,7 @@ class BinarySearchTree {
       }
 
       else {
-        this._replaceWith(null)
+        this._replaceWith(null);
       }
     }
 
@@ -79,7 +80,7 @@ class BinarySearchTree {
     }
 
     else {
-      throw new Error('not found')
+      throw new Error('not found');
     }
   }
 
