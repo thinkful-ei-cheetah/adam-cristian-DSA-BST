@@ -57,49 +57,77 @@ tree(nums);
 
 // Height of a BST
 
-// function heightOfBST(t) {
-//   let height = 0;
-//   height++;
+function heightOfBST(t) {
+  let leftHeight = 0;
+  let rightHeight = 0;
 
-//   if (t.tree === null) {
-//     height--;
-//   }
-//   if(t.right !== null){
-//     heightOfBST(t.right);
-//   }
-//   // else if(t.left !==null){
-//   //   heightOfBST(t.left);
-//   // }
-//   console.log(height);
-//   return height;
-// }
-
-
-
-// function hightFromTicks(ticks){
-//   console.log(ticks.length);
-// }
-
-
-
-// input = tree (3,1,4,6,9,2,5,7)
-// output = height of tree, 5
-
-// check for root if there is root set height to 1
-// if there is a left child height +1
-// else if there is a right child +1
-// if left and right child === null return height. 
-
-function heightOfBST(bst){
-  let node = bst.parent;
-  let height = 0;
-  while (node !== null){
-    if(bst.left){
-      height += 1;
-      node = bst.left;
-    }
+  if (t == null) {
+    return 0;
   }
-  return height;
+
+  if(t.right !== null){
+    rightHeight = heightOfBST(t.right);
+  }
+
+  if(t.left !== null){
+    leftHeight = heightOfBST(t.left);
+  }
+
+  if (!t.left && !t.right) {
+    return 1
+  }
+
+  return Math.max(leftHeight, rightHeight) + 1
 }
 
 console.log(heightOfBST(nums));
+
+// is it a BST ? 
+
+// input = 3
+//         /\
+//        1   5
+//         \  /\
+//          2 4 7
+// output = true
+// input = 3
+//         /\
+//        1   5
+//       /    /\
+//      2    7  4
+// output = false
+
+// check if theres anything in t 
+// check t.left is > parent false
+// t.right < parent false
+// otherwise check t.right and t.left's children
+
+function bstCheck(t) {
+  // if (t == null) {
+  //   console.log(t)
+  //   return false;
+  // }
+  if (t.left !== null) {
+    if (t.parent < t.left) {
+      return false;
+    }
+
+    bstCheck(t.left)
+  }
+  
+  if (t.right !== null) {
+    if (t.parent > t.right) {
+      return false;
+    }
+
+    bstCheck(t.right)
+  }
+
+  // if (!t.left && !t.right) {
+  //   return true;
+  // }
+
+  return true;
+}
+
+// console.log(bstCheck(nums))
