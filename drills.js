@@ -57,26 +57,49 @@ tree(nums);
 
 // Height of a BST
 
-function heightOfBST(t) {
+// function heightOfBST(t) {
+//   let height = 0;
+//   height++;
+
+//   if (t.tree === null) {
+//     height--;
+//   }
+//   if(t.right !== null){
+//     heightOfBST(t.right);
+//   }
+//   // else if(t.left !==null){
+//   //   heightOfBST(t.left);
+//   // }
+//   console.log(height);
+//   return height;
+// }
+
+
+
+// function hightFromTicks(ticks){
+//   console.log(ticks.length);
+// }
+
+
+
+// input = tree (3,1,4,6,9,2,5,7)
+// output = height of tree, 5
+
+// check for root if there is root set height to 1
+// if there is a left child height +1
+// else if there is a right child +1
+// if left and right child === null return height. 
+
+function heightOfBST(bst){
+  let node = bst.parent;
   let height = 0;
-  height++;
-
-  if (t.tree === null) {
-    height--;
+  while (node !== null){
+    if(bst.left){
+      height += 1;
+      node = bst.left;
+    }
   }
-  if(t.right !== null){
-    console.log(t.right);
-    heightOfBST(t.right);
-  }
-  // else if(t.left !==null){
-  //   heightOfBST(t.left);
-  // }
-  console.log(height);
   return height;
-}
-
-function hightFromTicks(ticks){
-  console.log(ticks.length);
 }
 
 console.log(heightOfBST(nums));
