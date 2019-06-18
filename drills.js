@@ -74,13 +74,13 @@ function heightOfBST(t) {
   }
 
   if (!t.left && !t.right) {
-    return 1
+    return 1;
   }
 
-  return Math.max(leftHeight, rightHeight) + 1
+  return Math.max(leftHeight, rightHeight) + 1;
 }
 
-console.log(heightOfBST(nums));
+heightOfBST(nums);
 
 // is it a BST ? 
 
@@ -112,7 +112,7 @@ function bstCheck(t) {
       return false;
     }
 
-    bstCheck(t.left)
+    bstCheck(t.left);
   }
   
   if (t.right !== null) {
@@ -120,7 +120,7 @@ function bstCheck(t) {
       return false;
     }
 
-    bstCheck(t.right)
+    bstCheck(t.right);
   }
 
   // if (!t.left && !t.right) {
@@ -131,3 +131,43 @@ function bstCheck(t) {
 }
 
 // console.log(bstCheck(nums))
+
+// 3rd largest node
+
+function thirdLargest(t, n){
+  let max = 0;
+
+  if(t.right === null){
+    max = t.key;
+    return max;
+  }else{
+    max = thirdLargest(t.right);
+  }
+  console.log(max);
+  for(let i = 1; i < n; i++){
+    t.remove(max);
+  }
+  // if(max > 0){
+  //   while(n - 1 > 0){
+      
+  //     t.remove(max);
+  //     thirdLargest(t, n-1);
+    
+  //   }
+  // }
+  
+}
+console.log(thirdLargest(nums, 3));
+
+// input = 3
+//         /\
+//        1   5
+//         \  /\
+//          2 4 7
+// output = 4
+
+// check if there are 3 or more items in tree.
+// find largest number by going to the right until t.right === null
+// if largest number does not have children then second heighest number is its parent.
+// if largest number has left child then 2nd largest is t.right until null.
+// if second largest has no children then 3rd largest is its parent unless is largest number
