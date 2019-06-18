@@ -1,1 +1,1 @@
-# Adam Cristian Bindary seach trees
+# Adam Cristian Binary seach trees
